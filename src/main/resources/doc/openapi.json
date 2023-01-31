@@ -1,0 +1,141 @@
+{
+  "basePath": "/",
+  "paths": {
+    "/api/user/login": {
+      "post": {
+        "summary": "使用用户对象登录",
+        "deprecated": false,
+        "description": "使用用户对象登录",
+        "tags": [
+          ""
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DataVo"
+            },
+            "description": "OK"
+          }
+        },
+        "operationId": "apiuserlogin",
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/SystemUser"
+            },
+            "in": "body",
+            "name": "login"
+          }
+        ]
+      }
+    }
+  },
+  "host": "http://localhost:3000",
+  "definitions": {
+    "string": {
+      "format": "string",
+      "type": "string"
+    },
+    "DataVo": {
+      "properties": {
+        "code": {
+          "format": "int32",
+          "description": "No comments found.",
+          "type": "integer",
+          "example": "657"
+        },
+        "message": {
+          "format": "string",
+          "description": "No comments found.",
+          "type": "string",
+          "example": "success"
+        },
+        "data": {
+          "description": "No comments found.(object)",
+          "type": "object",
+          "example": ""
+        }
+      }
+    },
+    "SystemUser": {
+      "properties": {
+        "id": {
+          "format": "int32",
+          "description": "",
+          "type": "integer",
+          "example": "194"
+        },
+        "username": {
+          "format": "string",
+          "description": "用户名",
+          "type": "string",
+          "example": "elliott.lemke"
+        },
+        "account": {
+          "format": "string",
+          "description": "账号",
+          "type": "string",
+          "example": "6h7ogm"
+        },
+        "password": {
+          "format": "string",
+          "description": "密码",
+          "type": "string",
+          "example": "ojel76"
+        },
+        "gender": {
+          "description": "性别(object)",
+          "type": "object",
+          "example": ""
+        },
+        "education": {
+          "format": "string",
+          "description": "学历",
+          "type": "string",
+          "example": "51o1bl"
+        },
+        "homeAddress": {
+          "format": "string",
+          "description": "家庭住址",
+          "type": "string",
+          "example": "Suite 146 70294 Treutel Spring， Tannaside， MS 30397"
+        },
+        "email": {
+          "format": "string",
+          "description": "邮箱",
+          "type": "string",
+          "example": "dave.ohara@yahoo.com"
+        },
+        "identity": {
+          "format": "string",
+          "description": "身份证",
+          "type": "string",
+          "example": "zoveui"
+        },
+        "dateOfBirth": {
+          "format": "string",
+          "description": "出生年月日",
+          "type": "string",
+          "example": "2023-01-31 16:11:52"
+        },
+        "creationTime": {
+          "format": "string",
+          "description": "创建时间",
+          "type": "string",
+          "example": "2023-01-31 16:11:52"
+        }
+      }
+    }
+  },
+  "swagger": "2.0",
+  "info": {
+    "title": "测试",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "",
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hengtaierp.mapper.SystemUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.hengtaierp.entity.SystemUser">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="account" column="account" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="OTHER"/>
+            <result property="education" column="education" jdbcType="VARCHAR"/>
+            <result property="homeAddress" column="home_address" jdbcType="VARCHAR"/>
+            <result property="eMail" column="e_mail" jdbcType="VARCHAR"/>
+            <result property="identity" column="identity" jdbcType="VARCHAR"/>
+            <result property="dateOfBirth" column="date_of_birth" jdbcType="TIMESTAMP"/>
+            <result property="creationTime" column="creation_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,account,
+        password,gender,education,
+        home_address,e_mail,identity,
+        date_of_birth,creation_time
+    </sql>
+</mapper>
