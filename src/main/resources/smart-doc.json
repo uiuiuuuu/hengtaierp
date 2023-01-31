@@ -1,0 +1,10 @@
+{
+  "serverUrl": "http://localhost:3000",
+  "isStrict": false,
+  "allInOne": true,
+  "outPath": "src/main/resources/doc",
+  "coverOld": true,
+  "createDebugPage": true,
+  "md5EncryptedHtmlName": false,
+  "projectName": "API测试"
+}
