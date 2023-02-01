@@ -30,9 +30,9 @@ public class UserController {
     public DataVo login(@RequestBody SystemUser systemUser){
         return systemUserService.login(systemUser);
     }
-    @GetMapping("/test")
-    public String test(){
-        return "Hello Word";
+    @GetMapping("/menu")
+    public DataVo menu(){
+
 
     }
 
