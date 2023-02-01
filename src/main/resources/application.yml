@@ -2,6 +2,7 @@ server:
   port: 3000
   tomcat:
     uri-encoding: utf-8
+#连接Mysql
 spring:
   datasource:
     host: localhost
@@ -10,17 +11,25 @@ spring:
     url: jdbc:mysql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.dbname}?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC
     username: root
     password: 123456
-  mvc:
-    static-path-pattern: /static/**
-    view:
-      prefix: classpath:/templates/
-      suffix: .html
+
+
+
+
   thymeleaf:
     cache: false
+    prefix: classpath:/templates
+    suffix: .html
+    servlet:
+      content-type: text/html
+
+
+
 
 mybatis-plus:
   check-config-location: false
   mapper-locations: classpath:mapper/*.xml
+  configuration:
+   log-impl: org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl
 
 excel:
   path: src/main/resources/excel
