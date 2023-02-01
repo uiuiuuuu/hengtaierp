@@ -1,8 +1,11 @@
 package com.hengtaierp.service.impl;
 
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hengtaierp.doman.DataVo;
+import com.hengtaierp.doman.MenuVo;
 import com.hengtaierp.entity.SystemUser;
 import com.hengtaierp.service.SystemUserService;
 import com.hengtaierp.mapper.SystemUserMapper;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -64,6 +68,36 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
 
         return dataVo;
     }
+
+    @Override
+    public DataVo addUser(HttpServletRequest httpServletRequest, SystemUser systemUser) {
+        DataVo dataVo = new DataVo<>();
+
+        QueryWrapper wrapper = new QueryWrapper<>();
+        wrapper.eq("account", systemUser.getAccount());
+        SystemUser user = systemUserMapper.selectOne(wrapper);
+        if (!Objects.isNull(user)) {
+
+            dataVo.error();
+            dataVo.setMessage("账户已存在");
+            dataVo.setData(null);
+            return dataVo;
+
+        }
+        int insert = systemUserMapper.insert(systemUser);
+        if (insert <= 0) {
+            dataVo.error();
+            dataVo.setMessage("添加失败");
+            dataVo.setData(null);
+        }
+        dataVo.ok();
+        dataVo.setMessage("添加成功");
+        dataVo.setData(null);
+
+        return dataVo;
+    }
+
+
 }
 
 

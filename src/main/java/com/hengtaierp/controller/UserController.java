@@ -38,11 +38,33 @@ public class UserController {
     public DataVo login(String account,String password){
         return systemUserService.login(account,password);
     }
+
+    /**
+     * 获取用户权限菜单
+     *
+     * @param httpServletRequest
+     * @return
+     */
     @GetMapping("/menu")
     public MenuVo menu(HttpServletRequest httpServletRequest){
        return systemMenuService.menu(httpServletRequest);
-
     }
+
+
+    @PostMapping("/add")
+    public DataVo addUser(HttpServletRequest httpServletRequest,@RequestBody SystemUser systemUser){
+
+        return systemUserService.addUser(httpServletRequest,systemUser);
+    }
+
+
+
+
+
+
+
+
+
 
     /**
      * 上传Excel 用户数锯

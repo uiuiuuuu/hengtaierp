@@ -15,12 +15,15 @@ public class JwtWebMvcConfig implements WebMvcConfigurer {
     private String api = "/api/user";
     String[] art = {
             api + "/login",
-            api + "/upload"
+            api + "/upload",
+
+
     };
 
     String[] out = {
-            api + "/menu"
 
+            api + "/menu",
+            api + "/add"
     };
 
 

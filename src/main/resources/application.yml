@@ -27,10 +27,13 @@ spring:
 
 
 mybatis-plus:
+
+
   check-config-location: false
   mapper-locations: classpath:mapper/*.xml
   configuration:
    log-impl: org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl
+   map-underscore-to-camel-case: true
 
 excel:
   path: src/main/resources/excel

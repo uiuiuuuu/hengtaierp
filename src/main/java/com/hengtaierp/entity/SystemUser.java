@@ -77,11 +77,12 @@ public class SystemUser implements Serializable {
      * 出生年月日
      */
     @ExcelProperty(value = "出生年月日", index = 5)
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
     /**
      * 创建时间
      */
+
     private Date creationTime;
 
     @TableField(exist = false)
