@@ -30,23 +30,23 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
     SystemUserMapper systemUserMapper;
 
     @Override
-    public DataVo login(SystemUser systemUser) {
-        String md5Password = Md5Utils.getMd5(systemUser.getPassword());
+    public DataVo login(String account, String password) {
+        String md5Password = Md5Utils.getMd5(password);
 
 
         DataVo dataVo = new DataVo<>();
         QueryWrapper login = new QueryWrapper<>();
-        login.eq("account", systemUser.getAccount());
+        login.eq("account", account);
 
         SystemUser user = systemUserMapper.selectOne(login);
 
         if (Objects.isNull(user)) {
-            dataVo.setCode(200);
+            dataVo.setCode(0);
             dataVo.setMessage("用户或密码错误！");
             dataVo.setData(null);
             return dataVo;
         } else if (!Md5Utils.getMd5(user.getPassword()).equals(md5Password)) {
-            dataVo.setCode(200);
+            dataVo.setCode(0);
             dataVo.setMessage("用户或密码错误！");
             dataVo.setData(null);
             return dataVo;
@@ -54,7 +54,7 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
 
         Map<String, Object> token = new HashMap<>();
 
-        dataVo.setCode(200);
+        dataVo.setCode(1);
         dataVo.setMessage("登录成功");
         token.put("Authorization", JwtUtils.getToken(user));
 

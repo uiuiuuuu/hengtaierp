@@ -19,7 +19,7 @@ public class JwtWebMvcConfig implements WebMvcConfigurer {
     };
 
     String[] out = {
-            api + "/test"
+            api + "/menu"
 
     };
 

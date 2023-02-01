@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
@@ -26,16 +27,17 @@ public class UserController {
     SystemMenuService systemMenuService;
 
     /**
-     * 使用用户对象登录
-     * @param systemUser  账号 account   密码  password
+     *  登录
+     * @param account
+     * @param password
      * @return
      */
     @PostMapping("/login")
-    public DataVo login(@RequestBody SystemUser systemUser){
-        return systemUserService.login(systemUser);
+    public DataVo login(String account,String password){
+        return systemUserService.login(account,password);
     }
     @GetMapping("/menu")
-    public DataVo menu(){
+    public Map<String, Object> menu(){
        return systemMenuService.menu();
 
     }

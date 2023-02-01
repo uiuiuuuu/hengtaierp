@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SystemUserService extends IService<SystemUser> {
 
-    DataVo login(SystemUser systemUser);
+    DataVo login(String account, String password);
 
 
 
