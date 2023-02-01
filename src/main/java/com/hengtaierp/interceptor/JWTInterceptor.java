@@ -25,16 +25,20 @@ public class JWTInterceptor implements HandlerInterceptor {
             return true;
         } catch (TokenExpiredException e) {
             map.put("state", false);
-            map.put("msg", "验证已过期,请重新登录");
+            map.put("code",3);
+            map.put("msg", "登录已过期,请重新登录！");
         } catch (SignatureVerificationException e){
             map.put("state", false);
+            map.put("code",4);
             map.put("msg", "验证错误,请确认后登录");
         } catch (AlgorithmMismatchException e){
             map.put("state", false);
-            map.put("msg", "验证加密错误");
+            map.put("msg", "加密错误");
+            map.put("code",6);
         } catch (Exception e) {
             e.printStackTrace();
             map.put("state", false);
+            map.put("code",5);
             map.put("msg", "验证无效");
         }
         String json = new ObjectMapper().writeValueAsString(map);

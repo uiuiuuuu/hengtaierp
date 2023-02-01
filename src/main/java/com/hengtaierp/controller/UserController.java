@@ -3,6 +3,7 @@ package com.hengtaierp.controller;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.hengtaierp.doman.DataVo;
+import com.hengtaierp.doman.MenuVo;
 import com.hengtaierp.entity.SystemUser;
 import com.hengtaierp.listener.SystemUserListener;
 import com.hengtaierp.service.SystemMenuService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
 
@@ -37,8 +39,8 @@ public class UserController {
         return systemUserService.login(account,password);
     }
     @GetMapping("/menu")
-    public Map<String, Object> menu(){
-       return systemMenuService.menu();
+    public MenuVo menu(HttpServletRequest httpServletRequest){
+       return systemMenuService.menu(httpServletRequest);
 
     }
 

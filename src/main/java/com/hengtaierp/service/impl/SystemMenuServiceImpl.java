@@ -1,24 +1,27 @@
 package com.hengtaierp.service.impl;
 
-import com.hengtaierp.doman.DataVo;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hengtaierp.doman.HomeVo;
+import com.hengtaierp.doman.LogoVo;
+import com.hengtaierp.doman.MenuVo;
 import com.hengtaierp.entity.SystemMenu;
+import com.hengtaierp.entity.SystemRole;
 import com.hengtaierp.mapper.SystemMenuMapper;
 import com.hengtaierp.mapper.SystemRoleMapper;
 import com.hengtaierp.service.SystemMenuService;
+import com.hengtaierp.utils.JwtUtils;
 import com.hengtaierp.utils.TreeUtil;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
-public class SystemMenuServiceImpl implements SystemMenuService, HandlerInterceptor {
+public class SystemMenuServiceImpl implements SystemMenuService {
 
 
     @Resource
@@ -29,39 +32,43 @@ public class SystemMenuServiceImpl implements SystemMenuService, HandlerIntercep
 
 
     @Override
-    public Map<String, Object> menu() {
+    public MenuVo menu(HttpServletRequest httpServletRequest) {
 
+        String authorization = httpServletRequest.getHeader("Authorization");
+        DecodedJWT verify = JwtUtils.verify(authorization);
+        Claim claim = verify.getClaim("id");
+        int i = claim.asInt().intValue();
+        MenuVo menu = new MenuVo();
 
-        DataVo dataVo = new DataVo<>();
-
-
-        Map<String, Object> map = new HashMap<>(16);
-        Map<String, Object> home = new HashMap<>(16);
-        Map<String, Object> logo = new HashMap<>(16);
-        List<SystemMenu> menuList = systemMenuMapper.selectList(null);
+        QueryWrapper wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", i);
+        List<SystemRole> menuList = systemRoleMapper.selectList(wrapper);
         List<SystemMenu> menuInfo = new ArrayList<>();
-        for (SystemMenu e : menuList) {
-            SystemMenu systemMenu = new SystemMenu();
-            systemMenu.setId(e.getId());
-            systemMenu.setPid(e.getPid());
-            systemMenu.setHref(e.getHref());
-            systemMenu.setTitle(e.getTitle());
-            systemMenu.setIcon(e.getIcon());
-            systemMenu.setTarget(e.getTarget());
+        QueryWrapper queryWrapper = new QueryWrapper<>();
+        for (SystemRole e : menuList) {
+            long menuId = e.getMenuId();
+            queryWrapper.eq("id", menuId);
+            SystemMenu systemMenu = systemMenuMapper.selectOne(queryWrapper);
             menuInfo.add(systemMenu);
+
         }
+        menu.setMenuInfo(TreeUtil.toTree(menuInfo, 0L));
 
-        map.put("menuInfo", TreeUtil.toTree(menuInfo, 0L));
+        HomeVo homeVo = new HomeVo();
+        homeVo.setTitle("首页");
+        homeVo.setHref("/page/welcome-1");
+        LogoVo logoVo = new LogoVo();
+        logoVo.setTitle("HENG TAI");
+        logoVo.setImage("images/logo.png");
+        menu.setHomeInfo(homeVo);
+        menu.setLogoInfo(logoVo);
 
 
-        home.put("title", "首页");
-        home.put("href", "/page/welcome-1");//控制器路由,自行定义
-        logo.put("title", "后台管理系统");
-        logo.put("image", "/static/images/back.jpg");//静态资源文件路径,可使用默认的logo.png
-        map.put("homeInfo", "{title: '首页',href: '/ruge-web-admin/page/welcome.html'}}");
-        map.put("logoInfo", "{title: 'RUGE ADMIN',image: 'images/logo.png'}");
+        menu.setCode(0);
+        menu.setMessage("菜单获取成功");
 
-        return map;
+
+        return menu;
     }
 }
 

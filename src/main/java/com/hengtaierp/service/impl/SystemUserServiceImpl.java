@@ -41,12 +41,12 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
         SystemUser user = systemUserMapper.selectOne(login);
 
         if (Objects.isNull(user)) {
-            dataVo.setCode(0);
+            dataVo.error();
             dataVo.setMessage("用户或密码错误！");
             dataVo.setData(null);
             return dataVo;
         } else if (!Md5Utils.getMd5(user.getPassword()).equals(md5Password)) {
-            dataVo.setCode(0);
+            dataVo.error();
             dataVo.setMessage("用户或密码错误！");
             dataVo.setData(null);
             return dataVo;
@@ -54,7 +54,7 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
 
         Map<String, Object> token = new HashMap<>();
 
-        dataVo.setCode(1);
+        dataVo.ok();
         dataVo.setMessage("登录成功");
         token.put("Authorization", JwtUtils.getToken(user));
 
