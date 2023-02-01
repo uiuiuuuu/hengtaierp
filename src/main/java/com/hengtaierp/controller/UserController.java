@@ -22,8 +22,8 @@ public class UserController {
     @Autowired
     SystemUserService systemUserService;
 
-    @Autowired
-    SystemMenuService systemMenuService;
+//    @Autowired
+//    SystemMenuService systemMenuService;
 
     /**
      * 使用用户对象登录
@@ -34,11 +34,11 @@ public class UserController {
     public DataVo login(@RequestBody SystemUser systemUser){
         return systemUserService.login(systemUser);
     }
-    @GetMapping("/menu")
-    public DataVo menu(){
-       return systemMenuService.menu();
-
-    }
+//    @GetMapping("/menu")
+//    public DataVo menu(){
+//       return systemMenuService.menu();
+//
+//    }
 
     /**
      * 上传Excel 用户数锯

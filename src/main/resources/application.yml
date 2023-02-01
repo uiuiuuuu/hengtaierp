@@ -13,18 +13,16 @@ spring:
     password: 123456
 
 
+  mvc:
+    view:
+      prefix: /
+      suffix: .html/.text
+    static-path-pattern: /**
 
 
-  thymeleaf:
 
-    cache: false
-    prefix: classpath:/templates/
-    suffix: .html
-    servlet:
-      content-type: text/html
-    enabled: true
-  webflux:
-    static-path-pattern: classpath:static/
+
+
 
 
 
