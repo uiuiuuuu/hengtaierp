@@ -168,15 +168,17 @@
             layui.$.ajax({
                 url: '/api/user/login', //提交接口
                 type: 'post',
+                headers: {Authorization: localStorage.getItem('token')},
                 data: {
                     account,
                     password: hex_md5(password)
                 },
                 success: function (res) {
                     layer.close(loading);
-                    const {code, message} = res;
+                    const {code, message, data: {Authorization}} = res;
                     if (code == 0) {
-                        layer.msg(message, {icon: 1})
+                        localStorage.setItem('token', Authorization)
+                        window.location.href = '/';
                     }
                     if (code == 1) {
                         layer.msg(message, {icon: 2})
