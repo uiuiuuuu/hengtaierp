@@ -16,12 +16,15 @@ spring:
 
 
   thymeleaf:
+
     cache: false
-    prefix: classpath:/templates
+    prefix: classpath:/templates/
     suffix: .html
     servlet:
       content-type: text/html
-
+    enabled: true
+  webflux:
+    static-path-pattern: classpath:static/
 
 
 

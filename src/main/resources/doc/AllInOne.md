@@ -2,9 +2,30 @@
 
 | Version | Update Time | Status | Author | Description |
 |---------|-------------|--------|--------|-------------|
-|v2023-01-31 16:10:37|2023-01-31 16:10:37|auto|@Administrator|Created by smart-doc|
+|v2023-02-01 09:47:29|2023-02-01 09:47:29|auto|@Administrator|Created by smart-doc|
 
 
+
+## 
+### 
+**URL:** http://localhost:3000
+
+**Type:** GET
+
+
+**Content-Type:** application/x-www-form-urlencoded;charset=UTF-8
+
+**Description:** 
+
+**Request-example:**
+```
+curl -X GET -i http://localhost:3000/
+```
+
+**Response-example:**
+```
+string
+```
 
 ## 
 ### 使用用户对象登录
@@ -36,19 +57,19 @@
 **Request-example:**
 ```
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:3000/api/user/login --data '{
-  "id": 851,
-  "username": "carlton.willms",
-  "account": "c5cza0",
-  "password": "m0q98f",
+  "id": 161,
+  "username": "annita.krajcik",
+  "account": "hmrpvx",
+  "password": "n0v1k4",
   "gender": {
     "object": "any object"
   },
-  "education": "6oad39",
-  "homeAddress": "0614 Art Greens， Port Theofort， SD 02502",
-  "email": "perry.dickinson@gmail.com",
-  "identity": "zoyka8",
-  "dateOfBirth": "2023-01-31 16:10:38",
-  "creationTime": "2023-01-31 16:10:38"
+  "education": "ta9cmq",
+  "homeAddress": "2834 Ryan River， Annmarieside， LA 74928",
+  "email": "andreas.schaden@gmail.com",
+  "identity": "58j83m",
+  "dateOfBirth": "2023-02-01 09:47:31",
+  "creationTime": "2023-02-01 09:47:31"
 }'
 ```
 **Response-fields:**
@@ -62,10 +83,56 @@ curl -X POST -H 'Content-Type: application/json' -i http://localhost:3000/api/us
 **Response-example:**
 ```
 {
-  "code": 405,
+  "code": 585,
   "message": "success",
   "data": {}
 }
+```
+
+### 
+**URL:** http://localhost:3000/api/user/test
+
+**Type:** GET
+
+
+**Content-Type:** application/x-www-form-urlencoded;charset=UTF-8
+
+**Description:** 
+
+**Request-example:**
+```
+curl -X GET -i http://localhost:3000/api/user/test
+```
+
+**Response-example:**
+```
+string
+```
+
+### 上传Excel 用户数锯
+**URL:** http://localhost:3000/api/user/upload
+
+**Type:** POST
+
+
+**Content-Type:** multipart/form-data
+
+**Description:** 上传Excel 用户数锯
+
+**Query-parameters:**
+
+| Parameter | Type | Required | Description | Since |
+|-----------|------|----------|-------------|-------|
+|file|file|false|No comments found.|-|
+
+**Request-example:**
+```
+curl -X POST -H 'Content-Type: multipart/form-data' -F 'file=' -i http://localhost:3000/api/user/upload
+```
+
+**Response-example:**
+```
+string
 ```
 
 

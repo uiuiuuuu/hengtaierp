@@ -1,5 +1,7 @@
 package com.hengtaierp.entity;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -20,51 +22,61 @@ public class SystemUser implements Serializable {
      *
      */
     @TableId(type = IdType.AUTO)
+    @ExcelIgnore
     private Integer id;
 
     /**
      * 用户名
      */
+    @ExcelProperty(value = "用户名", index = 0)
     private String username;
 
     /**
      * 账号
      */
+    @ExcelProperty(value = "账号", index = 1)
     private String account;
 
     /**
      * 密码
      */
+    @ExcelProperty(value = "密码", index = 2)
     private String password;
 
     /**
      * 性别
      */
+    @ExcelProperty(value = "性别", index = 3)
     private Object gender;
 
     /**
      * 学历
      */
+    @ExcelProperty(value = "学历", index = 4)
     private String education;
 
     /**
      * 家庭住址
      */
+    @ExcelProperty(value = "家庭住址", index = 5)
     private String homeAddress;
 
     /**
      * 邮箱
      */
+    @ExcelProperty(value = "邮箱", index =6)
     private String email;
 
     /**
      * 身份证
      */
+    @ExcelProperty(value = "身份证", index = 7)
     private String identity;
 
     /**
      * 出生年月日
      */
+    @ExcelProperty(value = "出生年月日", index = 5)
     private Date dateOfBirth;
 
     /**

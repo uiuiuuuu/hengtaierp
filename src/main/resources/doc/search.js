@@ -6,7 +6,7 @@ api.push({
     list: []
 })
 api[0].list.push({
-    alias: 'UserController',
+    alias: 'IndexController',
     order: '1',
     link: '',
     desc: '',
@@ -15,8 +15,33 @@ api[0].list.push({
 api[0].list[0].list.push({
     order: '1',
     deprecated: 'false',
+    url: 'http://localhost:3000',
+    desc: '',
+});
+api[0].list.push({
+    alias: 'UserController',
+    order: '2',
+    link: '',
+    desc: '',
+    list: []
+})
+api[0].list[1].list.push({
+    order: '1',
+    deprecated: 'false',
     url: 'http://localhost:3000/api/user/login',
     desc: '使用用户对象登录',
+});
+api[0].list[1].list.push({
+    order: '2',
+    deprecated: 'false',
+    url: 'http://localhost:3000/api/user/test',
+    desc: '',
+});
+api[0].list[1].list.push({
+    order: '3',
+    deprecated: 'false',
+    url: 'http://localhost:3000/api/user/upload',
+    desc: '上传Excel 用户数锯',
 });
 document.onkeydown = keyDownSearch;
 function keyDownSearch(e) {
